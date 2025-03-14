@@ -133,6 +133,22 @@ export default function Sidebar() {
                         <Users className="w-5 h-5 mr-2" /> 
                         <span className={!isSidebarOpen ? "hidden" : ""}>Profile</span>
                     </Link>
+                    <Link to="/employee-dashboard/attendance" className="flex items-center p-2 text-blue-600 hover:bg-blue-100 rounded-lg">
+                        <Calendar className="w-5 h-5 mr-2" /> 
+                        <span className={!isSidebarOpen ? "hidden" : ""}>Attendance & Leave</span>
+                    </Link>
+                    <Link to="/employee-dashboard/payroll" className="flex items-center p-2 text-blue-600 hover:bg-blue-100 rounded-lg">
+                        <CreditCard className="w-5 h-5 mr-2" /> 
+                        <span className={!isSidebarOpen ? "hidden" : ""}>Payroll</span>
+                    </Link>
+
+                    <Link to="/employee-dashboard/reports" className="flex items-center p-2 text-blue-600 hover:bg-blue-100 rounded-lg">
+                            <PieChart className="w-5 h-5 mr-3" /> <span className={!isSidebarOpen ? "hidden" : ""}>Performance & Reports</span>
+                        </Link>
+
+                        <Link to="/employee-dashboard/notifications" className="flex items-center p-2 text-blue-600 hover:bg-blue-100 rounded-lg">
+                            <MessageSquare className="w-5 h-5 mr-3" /> <span className={!isSidebarOpen ? "hidden" : ""}>Notifications</span>
+                        </Link>
                     </>
                 )}
 

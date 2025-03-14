@@ -59,6 +59,10 @@ import TeamAndEmployeeManagement from "./ManagerFunctionality/TeamAndEmployeeMan
 import MAttendanceAndLeave from "./ManagerFunctionality/MAttendanceAndLeave.jsx";
 import MPayRollManagement from "./ManagerFunctionality/MPayRollManagement.jsx";
 import EmployeeProfile from "./EmployeeFunctionality/EmployeeProfile.jsx";
+import AttendanceAndLeaveTracking from "./EmployeeFunctionality/AttendanceAndLeaveTracking.jsx";
+import PayrollAndSalary from "./EmployeeFunctionality/PayrollAndSalary.jsx";
+import PerformanceAndReport from "./EmployeeFunctionality/PerformanceAndReport.jsx";
+import ENotification from "./EmployeeFunctionality/ENotification.jsx";
 
 // ✅ Protected Route Component
 function ProtectedRoute({ allowedRoles, children }) {
@@ -208,6 +212,40 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["Employee"]}>
               <EmployeeProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employee-dashboard/attendance"
+          element={
+            <ProtectedRoute allowedRoles={["Employee"]}>
+              <AttendanceAndLeaveTracking />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employee-dashboard/payroll"
+          element={
+            <ProtectedRoute allowedRoles={["Employee"]}>
+              <PayrollAndSalary />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/employee-dashboard/reports"
+          element={
+            <ProtectedRoute allowedRoles={["Employee"]}>
+              <PerformanceAndReport />
+            </ProtectedRoute>
+          }
+        />
+
+
+        <Route
+          path="/employee-dashboard/notifications"
+          element={
+            <ProtectedRoute allowedRoles={["Employee"]}>
+              <ENotification />
             </ProtectedRoute>
           }
         />
