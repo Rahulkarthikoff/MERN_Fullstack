@@ -21,7 +21,7 @@ export default function PayrollManagement() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex h-screen bg-blue-50">
       <Sidebar />
       <div className="flex-1">
         <Header />

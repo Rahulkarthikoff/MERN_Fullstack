@@ -6,7 +6,7 @@ export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // ✅ Use navigate for redirection
+  const navigate = useNavigate();
 
   const API_URL = "http://localhost:5000";
 
@@ -14,10 +14,10 @@ export default function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const getRoleFromEmail = (email) => {
-    if (email.includes(".manager")) return "manager";
-    if (email.includes(".admin")) return "admin";
-    if (email.includes(".employee")) return "employee";
-    return null; // No valid role found
+    if (email.includes(".manager")) return "Manager"; // ✅ Capitalized
+    if (email.includes(".admin")) return "Admin"; // ✅ Capitalized
+    if (email.includes(".employee")) return "Employee"; // ✅ Capitalized
+    return null;
   };
 
   const handleSubmit = async (e) => {
@@ -27,14 +27,15 @@ export default function Login() {
     try {
       const res = await axios.post(API_URL + endpoint, formData);
       setMessage(isLogin ? `Welcome, ${res.data.user.name}` : "Registration successful!");
-      
+
       if (!isLogin) {
         setIsLogin(true);
       } else {
         const role = getRoleFromEmail(formData.email);
 
         if (role) {
-          setTimeout(() => navigate(`/${role}-dashboard`), 1000); // ✅ Redirect based on role
+          localStorage.setItem("userRole", role); // ✅ Store Correctly
+          navigate(`/${role.toLowerCase()}-dashboard`); // ✅ Redirect Instantly
         } else {
           setMessage("Invalid role in email. Please use a valid email format.");
         }

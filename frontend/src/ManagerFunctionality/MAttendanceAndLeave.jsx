@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Header from "../Components/Header";
 
 
-export default function AttendanceAndLeave() {
+export default function MAttendanceAndLeave() {
   const [attendanceRecords, setAttendanceRecords] = useState([
     { id: 1, name: "John Doe", date: "2025-03-10", status: "Present" },
     { id: 2, name: "Jane Smith", date: "2025-03-10", status: "Absent" },
@@ -15,8 +15,6 @@ export default function AttendanceAndLeave() {
     { id: 1, name: "Bob Brown", date: "2025-03-15", reason: "Medical", status: "Pending" },
     { id: 2, name: "Charlie Davis", date: "2025-03-20", reason: "Vacation", status: "Pending" }
   ]);
-
-  const [leavePolicy, setLeavePolicy] = useState("");
 
   const handleApproveLeave = (id) => {
     setLeaveRequests(leaveRequests.map(req =>
@@ -36,19 +34,18 @@ export default function AttendanceAndLeave() {
 
   return (
     <div className="flex h-screen bg-blue-50">
-    
       <Sidebar />
       <div className="flex-1">
         <Header />
         <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">Attendance & Leave Management</h2>
+          <h2 className="text-2xl font-bold mb-4">Team Attendance & Leave Management</h2>
 
-          {/* Daily Attendance Records */}
+          {/* Team Attendance Records */}
           <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 className="text-lg font-semibold mb-2">Daily Attendance Records</h3>
+            <h3 className="text-lg font-semibold mb-2">Team Attendance Records</h3>
             <table className="w-full border-collapse">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-gray-200 text-center">
                   <th className="p-2">Employee</th>
                   <th className="p-2">Date</th>
                   <th className="p-2">Status</th>
@@ -56,12 +53,10 @@ export default function AttendanceAndLeave() {
               </thead>
               <tbody>
                 {attendanceRecords.map(record => (
-                  <tr key={record.id} className="border-t">
+                  <tr key={record.id} className="border-t text-center">
                     <td className="p-2">{record.name}</td>
                     <td className="p-2">{record.date}</td>
-                    <td className={`p-2 ${record.status === "Present" ? "text-green-600" : "text-red-600"}`}>
-                      {record.status}
-                    </td>
+                    <td className={`p-2 ${record.status === "Present" ? "text-green-600" : "text-red-600"}`}>{record.status}</td>
                   </tr>
                 ))}
               </tbody>
@@ -83,17 +78,15 @@ export default function AttendanceAndLeave() {
               </thead>
               <tbody>
                 {leaveRequests.map(req => (
-                  <tr key={req.id} className="border-t">
+                  <tr key={req.id} className="border-t text-center">
                     <td className="p-2">{req.name}</td>
                     <td className="p-2">{req.date}</td>
                     <td className="p-2">{req.reason}</td>
-                    <td className={`p-2 ${req.status === "Approved" ? "text-green-600" : req.status === "Rejected" ? "text-red-600" : "text-yellow-600"}`}>
-                      {req.status}
-                    </td>
-                    <td className="p-2 flex space-x-2">
+                    <td className={`p-2 ${req.status === "Approved" ? "text-green-600" : req.status === "Rejected" ? "text-red-600" : "text-yellow-600"}`}>{req.status}</td>
+                    <td className="p-2 flex justify-center space-x-2">
                       {req.status === "Pending" && (
                         <>
-                          <button onClick={() => handleApproveLeave(req.id)} className="text-green-600">
+                          <button onClick={() => handleApproveLeave(req.id)} className="text-green-600 ">
                             <CheckCircle className="w-5 h-5" />
                           </button>
                           <button onClick={() => handleRejectLeave(req.id)} className="text-red-600">
@@ -106,18 +99,6 @@ export default function AttendanceAndLeave() {
                 ))}
               </tbody>
             </table>
-          </div>
-
-          {/* Leave Policy Section */}
-          <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-            <h3 className="text-lg font-semibold mb-2">Set Leave Policies</h3>
-            <textarea
-              className="border p-2 rounded-lg w-full"
-              rows="3"
-              placeholder="Enter leave policy details..."
-              value={leavePolicy}
-              onChange={(e) => setLeavePolicy(e.target.value)}
-            ></textarea>
           </div>
 
           {/* Generate Attendance Report */}

@@ -27,7 +27,7 @@ export default function Notification() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-blue-50">
       {/* Sidebar */}
       <Sidebar />
 
@@ -80,7 +80,7 @@ export default function Notification() {
               </thead>
               <tbody>
                 {notifications.map((notif) => (
-                  <tr key={notif.id} className="border-t">
+                  <tr key={notif.id} className="border-t text-center">
                     <td className="p-2">{notif.type}</td>
                     <td className="p-2">{notif.message}</td>
                     <td className="p-2">{notif.date}</td>
